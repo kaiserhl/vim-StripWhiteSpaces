@@ -20,5 +20,8 @@ function! s:StripWhiteSpaces()
     call setpos('.', save_cursor)
     call setreg('/', old_query)
 endfunction
-autocmd BufWritePre * StripWhiteSpace
+
+if exists('g:auto_StripWhiteSpaces') && g:auto_StripWhiteSpaces
+  autocmd BufWritePre * StripWhiteSpace
+endif
 command! -range=% StripWhiteSpaces :silent call <SID>StripWhiteSpaces()
